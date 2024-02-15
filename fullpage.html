@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullPage-test</title>
+    <link rel="stylesheet" href="./styles/jquery.fullPage.css">
+    <style>
+        .wrap {overflow-x: hidden;}
+        .wrap .bg {
+            width: 100vw;
+            height: 800px;
+        }
+        .wrap .bg1 {background: aqua;}
+        .wrap .bg2 {background: red;}
+        .wrap .bg3 {background: pink;}
+        .wrap .bg4 {background: yellow;}
+
+        .wrap .bg .title {
+            display: flex;
+            justify-content: center;
+        }
+        .wrap .bg .title h1 {
+            margin: 50px;
+        }
+        .wrap .bg .container {
+            display: flex;
+            margin: 0 200px;
+            justify-content: center;
+        }
+        .wrap .bg .container p {}
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="section bg bg1">
+            <div class="title">
+                <a href="#"><h1>제이쿼리란?</h1></a>
+                <a href="#"><h1>제이쿼리의 특징</h1></a>
+            </div>
+            <div class="container">
+                <p>제이쿼리는 자바스크립트 라이브러리입니다.</p>
+                <p>제이쿼리는 DOM 이벤트와 스타일을 자바스크립트보다 쉽게 제작할 수 있습니다.</p>
+            </div>
+        </div>
+        <div class="section bg bg2"></div>
+        <div class="section bg bg3"></div>
+        <div class="section bg bg4"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./script/jquery.fullPage.js"></script>
+    <script>
+        $('.wrap').fullpage({
+            //속성:값, 속성:값,
+            scrollBar:true,
+            scrollingSpeed:1500,
+        })
+
+        const title = document.querySelectorAll('.title a h1')
+        const container = document.querySelectorAll('.container p')
+        console.log(title, container)
+
+        for(let j of container ){j.style.display = 'none'}
+        container[0].style.display = 'block'
+
+        title.forEach((t,i)=>{
+            t.addEventListener('click',()=>{
+                for(let j of container){j.style.display='none'}
+                container[i].style.display='block'
+            })
+        })
+    </script>
+</body>
+</html>
